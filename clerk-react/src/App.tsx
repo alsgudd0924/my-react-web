@@ -157,7 +157,7 @@ export default function App() {
                   <strong>사용자 ID:</strong> {user?.id}
                 </div>
                 <div className="profile-item">
-                  <strong>유저네임:</strong> {user?.username || '없음'}
+                  <strong>아이디:</strong> {user?.username || '없음'}
                 </div>
                 <div className="profile-item">
                   <strong>이메일:</strong> {user?.primaryEmailAddress?.emailAddress || '없음'}
