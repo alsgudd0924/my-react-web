@@ -6,12 +6,12 @@ export default function App() {
   const { signIn, setActive } = useSignIn();
   const { signUp, setActive: setSignUpActive } = useSignUp();
   const { signOut } = useClerk();
-  const { user } = useUser(); // 사용자 정보 가져오기
+  const { user } = useUser();
   
   const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [showProfile, setShowProfile] = useState(false); // 프로필 보기 상태
+  const [showProfile, setShowProfile] = useState(false);
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +25,6 @@ export default function App() {
     
     try {
       if (isSignUp) {
-        // 회원가입 - 유저네임 + 비밀번호만
         const result = await signUp?.create({
           username: username,
           password: password,
@@ -35,7 +34,6 @@ export default function App() {
           await setSignUpActive?.({ session: result.createdSessionId });
         }
       } else {
-        // 로그인
         const result = await signIn?.create({
           identifier: username,
           password: password,
@@ -67,14 +65,14 @@ export default function App() {
           
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>{isSignUp ? '유저네임' : '아이디'}</label>
+              <label>아이디</label>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 disabled={loading}
-                placeholder={isSignUp ? '사용할 아이디' : '아이디'}
+                placeholder="아이디"
               />
             </div>
             
@@ -129,7 +127,6 @@ export default function App() {
       <SignedIn>
         <div className="dashboard">
           {!showProfile ? (
-            // 메인 대시보드
             <>
               <h1>환영합니다!</h1>
               <p>로그인 성공!</p>
@@ -149,7 +146,6 @@ export default function App() {
               </div>
             </>
           ) : (
-            // 프로필 화면
             <>
               <h1>프로필 정보</h1>
               <div className="profile-info">
